@@ -937,7 +937,7 @@ bot.on("message", message => {
 }
 
 if (message.content.includes(`aclearall`)){
-  if(message.channel.id === '762988645024006145' || message.channel.id === '733647202974433422'){
+  if(message.channel.id === '762988645024006145' || message.channel.id === '733647202974433422' || message.channel.id === '776502881330135081' || message.channel.id === '776957045747482675'){
   if(message.member.roles.cache.has('766598175993626625') || message.member.roles.cache.has('747074821229248552') || message.member.roles.cache.has('732914909524000838')) { 
   async function wipe() {
   var msg_size = 100;
@@ -961,33 +961,29 @@ wipe()
 }
 
 if (message.content.startsWith(`/voltooid`)){
-  //if(message.member.roles.cache.has('768441696274350120')){ 
+  if(message.member.roles.cache.has('766598175993626625') || message.member.roles.cache.has('747074821229248552') || message.member.roles.cache.has('732914909524000838')){
   const ready = message.mentions.users.first()
   if (!ready) return message.reply("Geef een persoon op") && message.delete()  
-  let role = message.channel.guild.roles.cache.find(r => r.name === "test")
-  let rol = message.channel.guild.roles.cache.find(r => r.name === "test2")
-  let weg = message.channel.guild.roles.cache.find(r => r.name === "gast")
+  let role = message.channel.guild.roles.cache.find(r => r.name === "MEMBER")
+  let rol = message.channel.guild.roles.cache.find(r => r.name === "TIER 1")
+  let weg = message.channel.guild.roles.cache.find(r => r.name === "TRY-OUT")
   let member = message.mentions.members.first()
           member.roles.add(role)
           member.roles.add(rol)
           member.roles.remove(weg)
-            var joined = new Discord.MessageEmbed()
-            .setTitle("Joined member")
-            .setColor("#00ff00")
-            .setDescription(`${ready} is toegelaten tot Civil Code!`)
-            
-            message.channel.bulkDelete(1).then(
-              bot.channels.cache.get(`768192445363781683`).send(joined)).catch(err => {
-                console.log("Er is iets mis gegaan")}
-              
-            )}
-
-            
+          var joined = new Discord.MessageEmbed()
+          .setTitle("Joined member")
+          .setColor("#00ff00")
+          .setDescription(`${ready} is toegelaten tot Civil Code!`)
           
+          message.channel.bulkDelete(1).then(
+            bot.channels.cache.get(`737661533290758212`).send(joined)).catch(err => {
+              console.log("Er is iets mis gegaan")}
+            
+          )}}
+            
 
-
-
-if (message.content.startsWith(`/register1`)){
+if (message.content.startsWith(`/register`)){
 
   var categoryID = "739597558351134781"
       var staff = "732914909524000838" && "747074821229248552" && "766598175993626625"
@@ -1044,7 +1040,7 @@ if (message.content.startsWith(`/register1`)){
                     var embedParent = new Discord.MessageEmbed()
                     .setTitle("Applicatie formulier voor " + message.author.username)  
                     .setColor("#00BFFF")
-                    .setFooter("Leuk dat jij je wilt aanmelden bij Civil Code! \n We gaan je een paar vragen stellen om wat basis informatie van jou te verkrijgen")
+                    .setFooter("Leuk dat jij je wilt aanmelden bij Civil Code! \nWe gaan je een paar vragen stellen om wat basis informatie van jou te verkrijgen. \nZodra je applicatie word goedgekeurd, zal dit kanaal automatisch verdwijnen.")
 
                     
                     
@@ -1130,7 +1126,7 @@ if (message.content.startsWith(`/register1`)){
                                                   
                                                   settedParent.bulkDelete(16).then(
                                                       settedParent.send(uitkomst).then(
-                                                      bot.channels.cache.get(`737636605023748097`).send(uitkomst))
+                                                      bot.channels.cache.get(`737636904480014356`).send(uitkomst))
                                                       
 
                                                   )
@@ -1166,7 +1162,7 @@ if (message.content.startsWith(`/register1`)){
       };
       
       
-      if (message.content.startsWith(`/review1`)){
+      if (message.content.startsWith(`/review`)){
 
       var categoryID = "739597558351134781"
 
@@ -1202,23 +1198,19 @@ if (message.content.startsWith(`/register1`)){
           let member = message.mentions.members.first()
           member.roles.add(role)
 
-          message.channel.send(redenEmbed).then(msg => msg.delete(10000))
+          
 
-          message.channel.awaitMessages(filter, {max: 1, time: 10000}).then(collected => {
+          message.channel.awaitMessages(filter, {max: 1, time: 2000}).then(collected => {
             var redenGood = collected.first()
 
-            var antwoordgood = new Discord.MessageEmbed()
-              .setTitle("Goedgekeurd:")
-              .setColor("#00ff00")
-              .addField("Wie", `${ticketUser}`, false)
-              .addField("Reden", `${redenGood}`, false)
-
-              message.channel.send(antwoordgood)
+            
               message.channel.bulkDelete(1)
               
+              
 
               
-              message.channel.delete(delayMS = 500000)
+              message.channel.delete(delayMS = 2000).catch(err => {
+                console.log("kanaal verwijderd")})
               
 
 
@@ -1245,8 +1237,9 @@ if (message.content.startsWith(`/register1`)){
                 message.channel.bulkDelete(1)
                 message.channel.setTopic(`**Aplicatie voor**: ${ticketUser} **status**: Afgewezen!`).then(
                   
-                    bot.channels.cache.get(`737636605023748097`).send(antwoordBad))
-                    message.channel.delete(delay = 1000000)
+                    bot.channels.cache.get(`737636904480014356`).send(antwoordBad))
+                    message.channel.delete(delay = 1000000).catch(err => {
+                      console.log("kanaal verwijderd")})
                     
                 
                 }).catch(err => {
@@ -1261,8 +1254,6 @@ if (message.content.startsWith(`/register1`)){
   
   
             };
-            
-        
           ;
           
   
@@ -1284,7 +1275,10 @@ if (message.content.startsWith(`/register1`)){
   
         
       });
-      
+
+     
+
+
       
 
 
@@ -1310,4 +1304,4 @@ bot.on('error', console.error);
 
 
 
-bot.login(process.env.token)
+bot.login('NzYwMTM4MTgwMzc2MTMzNjUy.X3Hr2A.7dBdN1_3ugAvPcFnssvNE6zpTQ4')

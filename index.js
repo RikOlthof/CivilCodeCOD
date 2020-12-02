@@ -1304,4 +1304,4 @@ bot.on('error', console.error);
 
 
 
-bot.login('NzYwMTM4MTgwMzc2MTMzNjUy.X3Hr2A.7dBdN1_3ugAvPcFnssvNE6zpTQ4')
+bot.login(process.env.token)
